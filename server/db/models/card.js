@@ -4,14 +4,16 @@ module.exports = (sequelize, DataTypes) => {
   class Card extends Model {
     static associate({ User }) {
       this.belongsTo(User, { foreignKey: "userId" });
+      this.belongsToMany(User, {through : "Basket", as: "UserCard" , foreignKey: "cardId"});
+
     }
   }
   Card.init(
     {
       title: DataTypes.STRING,
-      description: DataTypes.TEXT,
+      newcard: DataTypes.BOOLEAN,
       price: DataTypes.INTEGER,
-      city: DataTypes.STRING,
+      image: DataTypes.STRING,
       userId: DataTypes.INTEGER,
     },
     {

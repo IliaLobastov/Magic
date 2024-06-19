@@ -12,14 +12,14 @@ module.exports = {
       title: {
         type: Sequelize.STRING
       },
-      description: {
-        type: Sequelize.TEXT
-      },
       price: {
         type: Sequelize.INTEGER
       },
-      city: {
+      image: {
         type: Sequelize.STRING
+      },
+      newcard: {
+        type: Sequelize.BOOLEAN
       },
       userId: {
         type: Sequelize.INTEGER,
