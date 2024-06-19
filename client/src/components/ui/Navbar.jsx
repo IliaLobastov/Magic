@@ -1,15 +1,15 @@
-import React from "react";
-import Container from "react-bootstrap/Container";
-import Button from "react-bootstrap/esm/Button";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/esm/Navbar";
-import { NavLink } from "react-router-dom";
+import React from 'react';
+import Container from 'react-bootstrap/Container';
+import Button from 'react-bootstrap/esm/Button';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/esm/Navbar';
+import { NavLink } from 'react-router-dom';
 
 export default function NavBar() {
   return (
     <Navbar bg="dark" data-bs-theme="dark">
       <Container>
-        <Navbar.Brand href="/" style={{ color: "purple" }}>
+        <Navbar.Brand href="/" style={{ color: 'purple' }}>
           Magic Cards
         </Navbar.Brand>
         <Nav className="me-auto">

@@ -1,10 +1,11 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 
-export default function SignUp() {
+export default function SignUp({ signUpHandler }) {
   return (
-    <Form>
+    <Form onSubmit={signUpHandler}>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Name</Form.Label>
         <Form.Control
@@ -21,6 +22,9 @@ export default function SignUp() {
       <Col sm="10">
         <Form.Control type="password" placeholder="Password" />
       </Col>
+      <Button variant="outline-primary" type="submit">
+        Submit
+      </Button>
     </Form>
 
   );
