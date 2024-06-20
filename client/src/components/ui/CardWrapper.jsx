@@ -1,5 +1,5 @@
-import { StyledRow } from "../styled/StyledRow";
-import Card from "./Card";
+import { StyledRow } from '../styled/StyledRow';
+import Card from './Card';
 
 export default function CardWrapper({ cards }) {  
   return (

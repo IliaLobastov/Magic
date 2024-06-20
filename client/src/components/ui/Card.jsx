@@ -1,23 +1,23 @@
-import React from "react";
-import Col from "react-bootstrap/Col";
-import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/esm/Button";
-import { StyledCard } from "../styled/StyledCard";
+import React from 'react';
+import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/esm/Button';
+import { StyledCard } from '../styled/StyledCard';
 
 export default function MagicCard({ card }) {      //   принимаем карточку по названию ключа
   return (
     <Col md={4} className="mt-2 position-relative">
       <Card
         style={{
-          minHeight: "400px",
-          maxHeight: "400px",
+          minHeight: '400px',
+          maxHeight: '400px',
         }}
       >
         <Card.Img
           style={{
-            width: "100%",
-            height: "400px",
-            objectFit: "cover",
+            width: '100%',
+            height: '400px',
+            objectFit: 'cover',
           }}
           variant="top"
           src={`http://localhost:3000/img/${card.image}`}
