@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/esm/Button';
 import { StyledCard } from '../styled/StyledCard';
 
-export default function MagicCard({ card, submitCardHandler }) {
+export default function MyCard({card}) {
   return (
     <Col md={4} className="mt-2 position-relative">
       <Card
@@ -27,9 +27,6 @@ export default function MagicCard({ card, submitCardHandler }) {
           <h3 className="p-2">{card.price}</h3>
           <p className="p-2">{card.newcard}</p>
           <div className="d-flex flex-row justify-content-end gap-4">
-            <Button onClick={() => submitCardHandler(card.id)} variant="outline-danger" className="mb-2">
-              Добавить в корзину
-            </Button>
             <Button variant="outline-danger" className="mb-2">
               Удалить
             </Button>
