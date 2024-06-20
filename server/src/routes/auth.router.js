@@ -69,7 +69,7 @@ authRouter.post('/signup', async (req, res) => {
     }
   });
 
-  authRouter.post('logout', async (req, res) => {
+  authRouter.post('/logout', async (req, res) => {
     res.clearCookie('refreshToken').sendStatus(200)
   })
 

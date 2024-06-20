@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 import '../styleCSS/NavBar.css'; // Импортируем файл стилей
 import useStore from '../store';
 
-export default function NavBar() {
+export default function NavBar({handleLogout}) {
   const user = useStore((state) => state.user);
   return (
     <Navbar className="custom-navbar" expand="lg">
