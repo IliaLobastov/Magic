@@ -34,4 +34,3 @@ authRouter.post('/signup', async (req, res) => {
       res.status(500).json({ error: 'Server error' });
     }
   });
-  
