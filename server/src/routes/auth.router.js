@@ -69,6 +69,11 @@ authRouter.post('/signup', async (req, res) => {
     }
   });
 
+  authRouter.post('logout', async (req, res) => {
+    res.clearCookie('refreshToken').sendStatus(200)
+  })
+
+  
   authRouter.get('/cites', async (req, res) => {
     try {
       const cities = await City.findAll();
