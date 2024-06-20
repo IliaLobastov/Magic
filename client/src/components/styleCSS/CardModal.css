@@ -1,0 +1,16 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap"); */
+
+.custom-button {
+  border-color: #ff6347; /* цвет рамки кнопки */
+  color: #ff6347; /* цвет текста кнопки */
+}
+
+.custom-button:hover {
+  background-color: #ff6347; /* цвет фона при наведении */
+  color: #fff; /* цвет текста при наведении */
+}
+
+.custom-button:focus,
+.custom-button:active {
+  box-shadow: none; /* Убираем тень при фокусе и нажатии */
+}
