@@ -1,7 +1,8 @@
-import { StyledRow } from '../styled/StyledRow';
-import Card from './Card';
+import { StyledRow } from "../styled/StyledRow";
+import Card from "./Card";
+import "../styleCSS/CardWrapper.css";
 
-export default function CardWrapper({ cards }) {  
+export default function CardWrapper({ cards }) {
   return (
     <StyledRow className="mt-3">
       <h1>Magic Cards:</h1>
