@@ -10,6 +10,7 @@ export default function SignUp({ signUpHandler }) {
   const [input, setInput] = useState([]);
   const setCities = useStore((state) => state.setCities);
   const cities = useStore((state) => state.cities);
+  
   useEffect(() => {
     axiosInstance.get('/auth/cites').then((res) => setCities(res.data));
   }, []);
