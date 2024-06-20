@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Row from "react-bootstrap/Row";
 
 export const StyledRow = styled(Row)`
+  max-width: 98%;
   margin: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
