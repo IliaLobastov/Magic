@@ -35,3 +35,33 @@ authRouter.post('/signup', async (req, res) => {
     }
   });
   
+  authRouter.post('/signin', async (req, res) => {
+    const { email, password } = req.body;
+    if (!email || !password) {
+      return res.status(400).json({ error: 'Missing required fields' });
+    }
+  
+    try {
+      const user = await User.findOne({ where: { email } });
+      if (!user) {
+        return res.status(400).json({ error: 'Не верный логин или пароль' });
+      }
+  
+      const isValidPassword = await bcrypt.compare(password, user.password);
+  
+      if (!isValidPassword) {
+        return res.status(400).json({ error: 'Не верный логин или пароль' });
+      }
+  
+      const plainUser = user.get();
+      delete plainUser.password;
+  
+      const { accessToken, refreshToken } = generateTokens({ user: plainUser });
+      res
+        .cookie('refreshToken', refreshToken, cookieConfig.refresh)
+        .json({ user: plainUser, accessToken });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ error: 'Server error' });
+    }
+  });
