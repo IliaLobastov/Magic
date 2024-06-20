@@ -56,7 +56,7 @@ export default function NavBar() {
             </span>
             {user.data && (
             <span className="nav-link">
-              <Button variant="outline-danger" size="sm">
+              <Button onClick={handleLogout} variant="outline-danger" size="sm">
                 Logout
               </Button>
             </span>

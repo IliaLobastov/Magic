@@ -1,39 +1,73 @@
-import React, { useState } from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Layout from './components/Layout';
-import MainPage from './components/pages/MainPage';
-import SignUp from './components/pages/SignUp';
-import axiosInstance from './components/api/axiosInstance';
+import React, { useEffect, useState } from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Layout from "./components/Layout";
+import MainPage from "./components/pages/MainPage";
+import SignUp from "./components/pages/SignUp";
+import SignIn from "./components/pages/SignIn";
+import axiosInstance, { setAccessToken } from "./components/api/axiosInstance";
 
 function App() {
-  const [user, setUser] = useState({ status: 'fetching', data: null });
+  const [user, setUser] = useState({ status: "fetching", data: null });
+
+  useEffect(() => {
+    axiosInstance("tokens/refresh")
+      .then((res) => {
+        setUser(res.data.user);
+        setAccessToken(res.data.setAccessToken);
+      })
+      .catch(() => {
+        setUser(null);
+        setAccessToken("");
+      });
+  }, []);
+
   const signUpHandler = (e, input) => {
     e.preventDefault();
     const formData = Object.fromEntries(new FormData(e.target));
     if (!formData.email || !formData.password || !formData.name || !input) {
-      return alert('Missing required fields');
+      return alert("Missing required fields");
     }
-    axiosInstance.post('/auth/signup', { cityId: input, ...formData }).then(({ data }) => {
-      setUser({ status: 'logged', data: data.user });
-    });
+    axiosInstance
+      .post("/auth/signup", { cityId: input, ...formData })
+      .then(({ data }) => {
+        setUser({ status: "logged", data: data.user });
+      });
+  };
+
+  const signInHandler = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData);
+    const res = await axiosInstance.post("/auth/signin", data);
+    if (res.status === 200) {
+      setUser(res.data.user);
+      setAccessToken(res.data.setAccessToken);
+    }
+  };
+  const handleLogout = async () => {
+    const res = await axiosInstance.post("/auth/logout");
+    if (res.status === 200) {
+      setUser(null);
+      setAccessToken("");
+    }
   };
 
   const routes = [
     {
-      element: <Layout />,
+      element: <Layout user={user} handleLogout={handleLogout} />,
       children: [
         {
-          path: '/',
+          path: "/",
           element: <MainPage />,
         },
         {
-          path: '/auth/signup',
+          path: "/auth/signup",
           element: <SignUp signUpHandler={signUpHandler} />,
         },
-        // {
-        //   path: "/auth/signin",
-        //   element: <SignInPage />,
-        // },
+        {
+          path: "/auth/signin",
+          element: <SignIn signInHandler={signInHandler} />,
+        },
       ],
     },
   ];
