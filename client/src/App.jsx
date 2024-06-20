@@ -3,19 +3,20 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./components/Layout";
 import MainPage from "./components/pages/MainPage";
 import SignUp from "./components/pages/SignUp";
+import SignIn from "./components/pages/SignIn";
 import axiosInstance, { setAccessToken } from "./components/api/axiosInstance";
 
 function App() {
   const [user, setUser] = useState({ status: "fetching", data: null });
 
   useEffect(() => {
-    axiosInstance("/tokens/refresh")
-      .then(({ data }) => {
-        setUser({ status: "logged", data: data.user });
-        setAccessToken(data.accessToken);
+    axiosInstance("tokens/refresh")
+      .then((res) => {
+        setUser(res.data.user);
+        setAccessToken(res.data.setAccessToken);
       })
       .catch(() => {
-        setUser({ status: "fetching", data: null });
+        setUser(null);
         setAccessToken("");
       });
   }, []);
@@ -33,9 +34,27 @@ function App() {
       });
   };
 
+  const signInHandler = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData);
+    const res = await axiosInstance.post("/auth/signin", data);
+    if (res.status === 200) {
+      setUser(res.data.user);
+      setAccessToken(res.data.setAccessToken);
+    }
+  };
+  const handleLogout = async () => {
+    const res = await axiosInstance.post("/auth/logout");
+    if (res.status === 200) {
+      setUser(null);
+      setAccessToken("");
+    }
+  };
+
   const routes = [
     {
-      element: <Layout user={user} />,
+      element: <Layout user={user} handleLogout={handleLogout} />,
       children: [
         {
           path: "/",
@@ -45,10 +64,10 @@ function App() {
           path: "/auth/signup",
           element: <SignUp signUpHandler={signUpHandler} />,
         },
-        // {
-        //   path: "/auth/signin",
-        //   element: <SignInPage />,
-        // },
+        {
+          path: "/auth/signin",
+          element: <SignIn signInHandler={signInHandler} />,
+        },
       ],
     },
   ];

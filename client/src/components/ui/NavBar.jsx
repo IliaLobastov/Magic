@@ -57,11 +57,11 @@ export default function NavBar({ user }) {
               {`Привет, ${user.data ? user.data.name : "гость"} `}
             </span>
             {user.data && (
-              <span className="nav-link">
-                <Button variant="outline-danger" size="sm">
-                  Logout
-                </Button>
-              </span>
+            <span className="nav-link">
+              <Button onClick={handleLogout} variant="outline-danger" size="sm">
+                Logout
+              </Button>
+            </span>
             )}
           </Nav>
         </Navbar.Collapse>
