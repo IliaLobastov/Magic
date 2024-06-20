@@ -3,10 +3,10 @@ import { Outlet } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import NavBar from './ui/NavBar';
 
-export default function Layout() {
+export default function Layout({ user, handleLogout }) {
   return (
     <Container>
-      <NavBar />
+      <NavBar user={user} handleLogout={handleLogout} />
       <Outlet />
     </Container>
   );

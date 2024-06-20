@@ -52,4 +52,59 @@ cardRouter.post('/', verifyRefreshToken, upload.single("file"), async (req, res)
   }
 });
 
+cardRouter.delete("/:id", verifyRefreshToken, async (req, res) => {
+  try {
+    const card = await Card.findOne({
+      where: { id: req.params.id, userId: res.locals.user.id },
+    });
+    if (!card) {
+      return res
+        .status(404)
+        .json({ message: "Card not found or unauthorized" });
+    }
+    await fs.unlink(`./public/img/${card.image}`);
+    await card.destroy();
+    res.json({ message: "Card deleted successfully" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Internal server error");
+  }
+});
+
+cardRouter.patch(
+  "/:id",
+  verifyRefreshToken,
+  upload.single("file"),
+  async (req, res) => {
+    try {
+      const card = await Card.findOne({
+        where: { id: req.params.id, userId: res.locals.user.id },
+      });
+      if (!card) {
+        return res
+          .status(404)
+          .json({ message: "Card not found or unauthorized" });
+      }
+
+       let name = card.image;
+      if (req.file) {
+        name = `${Date.now()}.webp`;
+        const outputBuffer = await sharp(req.file.buffer).webp().toBuffer();
+        await fs.writeFile(`./public/img/${name}`, outputBuffer);
+        await fs.unlink(`./public/img/${card.image}`);
+      }
+
+      card.title = req.body.title !== undefined ? req.body.title : card.title;
+      card.price = req.body.price !== undefined ? req.body.price : card.price;
+      card.image = name;
+      await card.save();
+
+      res.json(card);
+    } catch (err) {
+      console.log(err);
+      res.status(500).send("Internal server error");
+    }
+  }
+);
+
 module.exports = cardRouter;
