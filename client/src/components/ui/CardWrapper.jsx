@@ -1,13 +1,17 @@
-import { StyledRow } from "../styled/StyledRow";
-import Card from "./Card";
-import "../styleCSS/CardWrapper.css";
+import React from 'react';
+import { StyledRow } from '../styled/StyledRow';
+import Card from './Card';
+import '../styleCSS/CardWrapper.css';
+import axiosInstance from '../api/axiosInstance';
+import useStore from '../store';
 
-export default function CardWrapper({ cards }) {
+export default function CardWrapper({ cards, submitCardHandler }) {
+
   return (
     <StyledRow className="mt-3">
       <h1>Magic Cards:</h1>
       {cards.map((card) => (
-        <Card key={card.id} card={card} />
+        <Card submitCardHandler={submitCardHandler} key={card.id} card={card} />
       ))}
     </StyledRow>
   );
