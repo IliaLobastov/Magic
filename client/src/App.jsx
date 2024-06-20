@@ -4,6 +4,7 @@ import Layout from './components/Layout';
 import MainPage from './components/pages/MainPage';
 import SignUp from './components/pages/SignUp';
 import axiosInstance from './components/api/axiosInstance';
+import Basket from './components/pages/Basket';
 
 function App() {
   const [user, setUser] = useState({ status: 'fetching', data: null });
@@ -34,6 +35,10 @@ function App() {
         //   path: "/auth/signin",
         //   element: <SignInPage />,
         // },
+        {
+          path: '/basket',
+          element: <Basket />,
+        },
       ],
     },
   ];

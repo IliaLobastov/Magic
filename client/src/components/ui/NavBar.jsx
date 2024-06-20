@@ -26,6 +26,13 @@ export default function NavBar() {
             <NavLink to="/" className="nav-link" style={{ color: '#ff6347' }}>
               MainPage
             </NavLink>
+            <NavLink
+              to="/basket"
+              className="nav-link"
+              style={{ color: '#ff6347' }}
+            >
+              Корзина
+            </NavLink>
             <Nav.Link href="#features" style={{ color: '#ff6347' }}>
               ///
             </Nav.Link>
