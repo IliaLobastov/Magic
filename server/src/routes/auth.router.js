@@ -1,12 +1,15 @@
 const authRouter = require('express').Router();
 
 const bcrypt = require('bcrypt');
-const { User } = require('../../db/models');
+const { User, City} = require('../../db/models');
 const generateTokens = require('../utils/generateTokens');
 const cookieConfig = require('../configs/cookie.config');
 
+
+
 authRouter.post('/signup', async (req, res) => {
-    const { email, name, password } = req.body;
+  console.log(req.body);
+    const { email, name, password , cityId  } = req.body;
   
     if (!email || !name || !password) {
       return res.status(400).json({ error: 'Missing required fields' });
@@ -15,7 +18,7 @@ authRouter.post('/signup', async (req, res) => {
     try {
       const [user, created] = await User.findOrCreate({
         where: { email },
-        defaults: { name, password: await bcrypt.hash(password, 10) },
+        defaults: { name, password: await bcrypt.hash(password, 10), cityId },
       });
   
       if (!created) {
@@ -65,3 +68,14 @@ authRouter.post('/signup', async (req, res) => {
       res.status(500).json({ error: 'Server error' });
     }
   });
+
+  authRouter.get('/cites', async (req, res) => {
+    try {
+      const cities = await City.findAll();
+      res.status(200).json(cities);
+    } catch (error) {
+      res.status(500).json({ error: 'Server error' });
+    }
+  });
+
+  module.exports=authRouter;
