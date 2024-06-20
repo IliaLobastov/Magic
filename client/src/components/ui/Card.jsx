@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/esm/Button';
 import { StyledCard } from '../styled/StyledCard';
 
-export default function Card1({ card }) {
+export default function MagicCard({ card }) {      //   принимаем карточку по названию ключа
   return (
     <Col md={4} className="mt-2 position-relative">
       <Card
@@ -20,13 +20,12 @@ export default function Card1({ card }) {
             objectFit: 'cover',
           }}
           variant="top"
-        //   src={card.img}
+          src={`http://localhost:3000/img/${card.image}`}
         />
         <StyledCard>
           <h2 className="p-2">{card.title}</h2>
-          <p className="p-2">{card.description}</p>
           <h3 className="p-2">{card.price}</h3>
-          <p className="p-2">{card.city}</p>
+          <p className="p-2">{card.newcard}</p>
           <div className="d-flex flex-row justify-content-end gap-4">
             <Button variant="outline-danger" className="mb-2">
               Подробнее

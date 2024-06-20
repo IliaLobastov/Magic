@@ -1,5 +1,5 @@
 /** @type {import('sequelize-cli').Migration} */
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
 
 module.exports = {
   async up(queryInterface, Sequelize) {
@@ -12,40 +12,76 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
-
-    await queryInterface.bulkInsert('Users', [
+    await queryInterface.bulkInsert("Cities", [
       {
-        name: 'John Doe',
-        email: '123@123',
-        password: await bcrypt.hash('123', 10),
+        cityName: "New York",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        cityName: "Los Angeles",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        cityName: "Chicago",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        cityName: "Houston",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        cityName: "Phoenix",
         createdAt: new Date(),
         updatedAt: new Date(),
       },
     ]);
-    await queryInterface.bulkInsert('Cards', [
+
+    await queryInterface.bulkInsert("Users", [
       {
-        title: 'Item 1',
-        description: 'Description of item 1',
-        price: 1000,
-        city: 'New York',
-        userId: 1, // Assuming this corresponds to an existing user id
+        name: "John Doe",
+        email: "123@123",
+        password: await bcrypt.hash("123", 10),
+        cityId: 1,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+    ]);
+    await queryInterface.bulkInsert("Cards", [
+      {
+        title: "Card 1",
+        price: 100,
+        image: "1718833964097.webp", // Ссылка на изображение
+        newcard: true,
+        userId: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
       {
-        title: 'Item 2',
-        description: 'Description of item 2',
-        price: 1500,
-        city: 'Los Angeles',
-        userId: 1, // Assuming this corresponds to an existing user id
+        title: "Card 2",
+        price: 200,
+        image: "1718833964097.webp", // Ссылка на изображение
+        newcard: false,
+        userId: 1,
         createdAt: new Date(),
         updatedAt: new Date(),
       },
+      {
+        title: "Card 3",
+        price: 300,
+        image: "1718862027509.webp", // Ссылка на изображение
+        newcard: true,
+        userId: 1,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+
       // Add more cards as needed
     ]);
   },
-  
-  
 
   async down(queryInterface, Sequelize) {
     /**
