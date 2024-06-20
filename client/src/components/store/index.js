@@ -1,8 +1,10 @@
-import { create } from "zustand";
+import { create } from 'zustand';
 
 const useStore = create((set) => ({
-  user: { status: "fetching", data: null },
+  cities: [],
+  user: { status: 'fetching', data: null },
   setUser: (data) => set(() => ({ user: data })),
+  setCities: (data) => set(() => ({ cities: data })),
 }));
 
 export default useStore;
