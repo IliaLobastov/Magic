@@ -4,6 +4,7 @@ const fs = require("fs/promises");
 const upload = require("../middlewares/multer.middleware");
 
 const { Card, User } = require("../../db/models");
+const { verifyRefreshToken } = require("../middlewares/verifyTokens");
 
 const cardRouter = express.Router();
 
@@ -12,7 +13,7 @@ cardRouter.get("/", async (req, res) => {
   res.json(cards);
 });
 
-cardRouter.post('/', upload.single("file"), async (req, res) => {
+cardRouter.post('/', verifyRefreshToken, upload.single("file"), async (req, res) => {
   // проверяем наличие файла
   try {
     if (!req.file) {
@@ -30,7 +31,7 @@ cardRouter.post('/', upload.single("file"), async (req, res) => {
       price: req.body.price,
       image: name,
       // newcard: req.body.newcard,
-      // userId: res.locals.user.id,
+      userId: res.locals.user.id,
     });
     // const plainCard = card.get();
     // plainCard.User = res.locals.user;
