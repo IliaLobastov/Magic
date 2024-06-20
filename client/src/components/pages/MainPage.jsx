@@ -5,6 +5,7 @@ import CardWrapper from "../ui/CardWrapper";
 import CardModal from "../ui/CardModal";
 import CardForm from "../ui/CardForm";
 import axiosInstance from "../api/axiosInstance";
+import useStore from "../store";
 
 export default function MainPage() {
   const [cards, setCards] = useState([]);
@@ -34,6 +35,20 @@ export default function MainPage() {
       });
   };
 
+  const user = useStore((state) => state.user);
+
+  const submitCardHandler = async (id) => {
+    console.log('--------------');
+    try {
+      const response = await axiosInstance.post('/basket', { userId: user.id, cardId: id });
+      if (response.stetus === 201) {
+        console.log('товар добавлен в корзину');
+      }
+    } catch (error) {
+      console.log('ошибка при добавлении в корзину');
+    }
+  };
+
   return (
     <Row>
       <Col>
@@ -41,7 +56,7 @@ export default function MainPage() {
           <CardForm cardSubmitHandler={cardSubmitHandler} />
         </CardModal>
       </Col>
-      <CardWrapper cards={cards} />
+      <CardWrapper cards={cards} submitCardHandler={submitCardHandler} />
     </Row>
   );
 }
