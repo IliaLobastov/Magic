@@ -8,7 +8,8 @@ import axiosInstance from "../api/axiosInstance";
 import useStore from "../store";
 
 export default function MainPage() {
-  const [cards, setCards] = useState([]);
+  const card = useStore((state) => state.card);
+  const setCards = useStore((state) => state.setCards)
 
   useEffect(() => {
     axiosInstance.get("/cards").then((res) => setCards(res.data));
@@ -41,7 +42,7 @@ export default function MainPage() {
     console.log('--------------');
     try {
       const response = await axiosInstance.post('/basket', { userId: user.id, cardId: id });
-      if (response.stetus === 201) {
+      if (response.status === 201) {
         console.log('товар добавлен в корзину');
       }
     } catch (error) {
@@ -56,7 +57,7 @@ export default function MainPage() {
           <CardForm cardSubmitHandler={cardSubmitHandler} />
         </CardModal>
       </Col>
-      <CardWrapper cards={cards} submitCardHandler={submitCardHandler} />
+      <CardWrapper submitCardHandler={submitCardHandler} />
     </Row>
   );
 }
