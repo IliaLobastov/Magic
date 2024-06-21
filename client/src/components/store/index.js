@@ -9,6 +9,7 @@ const useStore = create((set) => ({
   setCities: (data) => set(() => ({ cities: data })),
   setBasket: (data) => set(() => ({ basket: data })),
   setCards: (data) => set(() => ({ cards: data })),
+  addCard: (data) => set((state) => ({cards : [...state.cards, data]}))
 }));
 
 export default useStore;
