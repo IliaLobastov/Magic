@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/esm/Button';
 import { StyledCard } from '../styled/StyledCard';
 import useStore from '../store';
 
-export default function MyCard({ card }) {
+export default function MyCard({ card, deleteHandler }) {
   return (
     <Col md={4} className="mt-2 position-relative">
       <Card
@@ -21,14 +21,14 @@ export default function MyCard({ card }) {
             objectFit: 'cover',
           }}
           variant="top"
-          src={`http://localhost:3000/img/${card.Card.image}`}
+          src={`http://localhost:3000/img/${card.image}`}
         />
         <StyledCard>
-          <h2 className="p-2">{card.Card.title}</h2>
-          <h3 className="p-2">{card.Card.price}</h3>
-          <p className="p-2">{card.Card.newcard}</p>
+          <h2 className="p-2">{card.title}</h2>
+          <h3 className="p-2">{card.price}</h3>
+          <p className="p-2">{card.newCard}</p>
           <div className="d-flex flex-row justify-content-end gap-4">
-            <Button variant="outline-danger" className="mb-2">
+            <Button onClick={() => deleteHandler(card.id)} variant="outline-danger" className="mb-2">
               Удалить
             </Button>
           </div>
