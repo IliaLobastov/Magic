@@ -37,7 +37,8 @@ basketRouter.route('/:id').delete(verifyAccessToken, async (req, res) => {
   }
   try {
     // const card = await Card.findByPk(req.params.id);
-    await Card.destroy({where: {id}});
+    const result = await Card.findOne({where: {id}});
+    result.destroy();
     res.json({ message: 'Карточка удалена' });
   } catch (e) {
     console.log(e);

@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate({ Card, City }) {
       this.hasMany(Card, { foreignKey: "userId" });
       this.belongsTo(City, {foreignKey: "cityId"});
-      this.belongsToMany(Card, {through : "Basket", as: "UserCard" , foreignKey: "userId"});
+      this.belongsToMany(Card, {through : "Basket", as: "UserCard" , foreignKey: "userId", onDelete: "CASCADE"});
     }
   }
   User.init(
