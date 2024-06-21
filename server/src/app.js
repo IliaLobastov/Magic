@@ -15,7 +15,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/api/cards', cardRouter);
 app.use('/api/auth', authRouter);
-// app.use('/api/routs', tokenRouter);
 app.use('/api/basket', basketRouter);
 app.use('/api/tokens', tokenRouter);
 
