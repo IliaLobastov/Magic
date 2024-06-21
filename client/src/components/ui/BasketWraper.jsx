@@ -13,10 +13,6 @@ export default function BasketWraper({deleteHandler}) {
         <MyCard
           key={card.id}
           card={card}
-          image={card.image}
-          price={card.price}
-          title={card.title}
-          newCard={card.newCard}
           deleteHandler={deleteHandler}
         />
       ))}
