@@ -1,7 +1,7 @@
-import { useState } from "react";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import "../styleCSS/CardModal.css";
+import { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import '../styleCSS/CardModal.css';
 
 export default function CardModal({ title, children, buttonText }) {
   const [show, setShow] = useState(false);
@@ -18,6 +18,7 @@ export default function CardModal({ title, children, buttonText }) {
       >
         {buttonText}
       </Button>
+
       <Modal show={show} onHide={handleClose} centered>
         <Modal.Header closeButton>
           <Modal.Title>{title}</Modal.Title>

@@ -8,7 +8,7 @@ export default function BasketWraper({deleteHandler}) {
   console.log({ basket });
   return (
     <StyledRow className="mt-3">
-      <h1>Basket</h1>
+      <h1 style={{ color: "#FF6347" }}>Basket</h1>
       {basket.map((card) => (
         <MyCard
           key={card.id}

@@ -9,7 +9,7 @@ export default function CardWrapper({ submitCardHandler }) {
   console.log('----', typeof cards);
   return (
     <StyledRow className="mt-3">
-      <h1>Magic Cards:</h1>
+      <h1 style={{ color: "#FF6347" }}>Magic Cards:</h1>
       {cards.map((card) => (
         <Card submitCardHandler={submitCardHandler} key={card.id} card={card} />
       ))}
