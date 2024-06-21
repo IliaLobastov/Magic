@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap");
+
+.custom-navbar {
+  /* display: flex;
+  flex-direction: row;
+  align-items: center; */
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #4a2e19; /* коричневый цвет */
+  font-family: "Cinzel", serif;
+  border-radius: 5px;
+  box-shadow: 0 0 15px #ccc;
+  z-index: 9999;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+}
+
+.custom-navbar:hover {
+  box-shadow: 0 0 40px #aaa;
+}
+
+.navbar-dark,
+.navbar-brand {
+  color: #ff6347 !important; /* цвет текста, совпадающий с цветом кнопки */
+  font-weight: bold;
+}
+
+.navbar-dark,
+.navbar-nav,
+.nav-link {
+  color: #ff6347 !important; /* цвет текста, совпадающий с цветом кнопки */
+  border-radius: 10px; /* закругленные углы */
+}
+
+.navbar-dark,
+.navbar-nav,
+.nav-link:hover {
+  color: #00bfff !important; /* цвет текста при наведении */
+  background-color: #4a2e19; /* коричневый фон при наведении */
+}
+
+.navbar-dark,
+.navbar-nav,
+.separator {
+  color: #ff6347 !important; /* цвет для разделителя */
+}
+
+.brand-logo {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 10px;
+  border: 2px solid #ffd700; /* золотистая рамка */
+}
+
+button.btn-outline-danger {
+  border-color: #ff6347; /* цвет рамки кнопки */
+  color: #ff6347; /* цвет текста кнопки */
+}
+
+button.btn-outline-danger:hover {
+  background-color: #ff6347; /* цвет фона при наведении */
+  color: #fff; /* цвет текста при наведении */
+}
