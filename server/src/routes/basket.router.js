@@ -15,7 +15,9 @@ basketRouter
 
 basketRouter.get("/",verifyAccessToken, async (req, res) => {
     try {
-        const basket = await Basket.findAll();
+        const basket = await Basket.findAll({
+            include: "Card",
+        });
         res.json(basket);
     } catch (error) {
         res.status(500).send('Гет запрос для корзины не сработал');

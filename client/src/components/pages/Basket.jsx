@@ -6,7 +6,7 @@ import BasketWraper from '../ui/BasketWraper';
 
 export default function Basket() {
   const setBasket = useStore((state) => state.setBasket);
-  const basket = useStore((state) => state.basket);
+
   useEffect(() => {
     axiosInstance.get('/basket').then((res) => setBasket(res.data));
   }, []);
@@ -14,7 +14,7 @@ export default function Basket() {
   return (
     <Table striped="columns">
       <h1>...</h1>
-      <BasketWraper basket={basket}/>
+      <BasketWraper />
     </Table>
   );
 }
