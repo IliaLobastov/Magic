@@ -6,15 +6,22 @@ import BasketWraper from '../ui/BasketWraper';
 
 export default function Basket() {
   const setBasket = useStore((state) => state.setBasket);
+  const setCards = useStore((state) => state.setCards);
 
   useEffect(() => {
     axiosInstance.get('/basket').then((res) => setBasket(res.data));
   }, []);
 
+  const deleteHandler = (id) => {
+    console.log('----id', typeof id);
+    axiosInstance.delete(`/basket/${id}`).then(() => {
+      setCards((data) => data.filter((el) => el.id !== id));
+    });
+  };
+
   return (
     <Table striped="columns">
-      <h1>...</h1>
-      <BasketWraper />
+      <BasketWraper deleteHandler={deleteHandler} />
     </Table>
   );
 }

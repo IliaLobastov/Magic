@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from "react";
-import Row from "react-bootstrap/esm/Row";
-import Col from "react-bootstrap/esm/Col";
-import CardWrapper from "../ui/CardWrapper";
-import CardModal from "../ui/CardModal";
-import CardForm from "../ui/CardForm";
-import axiosInstance from "../api/axiosInstance";
-import useStore from "../store";
+import React, { useState, useEffect } from 'react';
+import Row from 'react-bootstrap/esm/Row';
+import Col from 'react-bootstrap/esm/Col';
+import CardWrapper from '../ui/CardWrapper';
+import CardModal from '../ui/CardModal';
+import CardForm from '../ui/CardForm';
+import axiosInstance from '../api/axiosInstance';
+import useStore from '../store';
 
 export default function MainPage() {
-  const card = useStore((state) => state.card);
-  const setCards = useStore((state) => state.setCards)
+  // const card = useStore((state) => state.card);
+  const setCards = useStore((state) => state.setCards);
+  const addCard = useStore((state) => state.addCard);
 
   useEffect(() => {
-    axiosInstance.get("/cards").then((res) => setCards(res.data));
+    axiosInstance.get('/cards').then((res) => setCards(res.data));
   }, []);
-  
+
   const cardSubmitHandler = (e) => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.target));
@@ -22,14 +23,14 @@ export default function MainPage() {
 
     const formData = new FormData();
 
-    formData.append("title", data.title);
-    formData.append("price", data.price);
-    formData.append("file", data.file);
+    formData.append('title', data.title);
+    formData.append('price', data.price);
+    formData.append('file', data.file);
 
     axiosInstance
-      .post("/cards", formData)
+      .post('/cards', formData)
       .then((res) => {
-        setCards((prev) => [res.data, ...prev]);
+        addCard(res.data);
       })
       .catch((err) => {
         console.log(err);
