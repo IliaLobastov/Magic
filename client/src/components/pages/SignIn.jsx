@@ -6,9 +6,8 @@ import Row from 'react-bootstrap/Row';
 import useStore from '../store';
 import axiosInstance from '../api/axiosInstance';
 
-export default function SignUp({ signInHandler }) {
-  
-
+export default function SignIn({ signInHandler }) {
+    
   return (
     <Row>
       <Col md={{ span: 6, offset: 3 }} className="mt-5">
