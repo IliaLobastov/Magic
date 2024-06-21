@@ -7,8 +7,7 @@ import { NavLink } from "react-router-dom";
 import "../styleCSS/NavBar.css"; // Импортируем файл стилей
 import useStore from "../store";
 
-export default function NavBar({ user }) {
-  console.log(user);
+export default function NavBar({ user, handleLogout }) {
   return (
     <Navbar className="custom-navbar" expand="lg">
       <Container>
@@ -34,7 +33,7 @@ export default function NavBar({ user }) {
             </Nav.Link>
           </Nav>
           <Nav>
-            {user.status === "fetching" && (
+            {user && user.status === "fetching" && (
               <NavLink
                 to="/auth/signin"
                 className="nav-link"
@@ -54,14 +53,18 @@ export default function NavBar({ user }) {
               |
             </span>
             <span className="nav-link" style={{ color: "#ff6347" }}>
-              {`Привет, ${user.data ? user.data.name : "гость"} `}
+              {`Привет, ${user && user.data ? user.data.name : "гость"} `}
             </span>
-            {user.data && (
-            <span className="nav-link">
-              <Button onClick={handleLogout} variant="outline-danger" size="sm">
-                Logout
-              </Button>
-            </span>
+            {user && user.data && (
+              <span className="nav-link">
+                <Button
+                  onClick={handleLogout}
+                  variant="outline-danger"
+                  size="sm"
+                >
+                  Logout
+                </Button>
+              </span>
             )}
           </Nav>
         </Navbar.Collapse>
