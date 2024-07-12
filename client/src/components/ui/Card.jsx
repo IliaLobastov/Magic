@@ -17,7 +17,7 @@ export default function MagicCard({ card, submitCardHandler }) {
         <Card.Img
           style={{
             width: "100%",
-            height: "300px",
+            height: "550px",
             objectFit: "cover",
             borderTopLeftRadius: "15px", // Закругление углов изображения
             borderTopRightRadius: "15px",
@@ -25,7 +25,7 @@ export default function MagicCard({ card, submitCardHandler }) {
           variant="top"
           src={`http://localhost:3000/img/${card.image}`}
         />
-        <Card.Body>
+        <Card.Body style={{ backgroundColor: '#FFDAB9' }}>
           <Card.Title>{card.title}</Card.Title>
           <Card.Text>{`${card.price}¥`}</Card.Text>
           <Card.Text>{card.newcard}</Card.Text>

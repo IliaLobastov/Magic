@@ -35,7 +35,7 @@ function App() {
       .then(({ data }) => {
         setUser({ status: "logged", data: data.user });
       });
-      window.location.href = '/';
+    window.location.href = "/auth/signin";
   };
 
   const signInHandler = async (e) => {
@@ -46,7 +46,7 @@ function App() {
     if (res.status === 200) {
       setUser({ status: "logged", data: res.data.user });
       setAccessToken(res.data.setAccessToken);
-      window.location.href = '/';
+      window.location.href = "/";
     }
   };
   const handleLogout = async () => {
@@ -77,6 +77,10 @@ function App() {
           path: "/basket",
           element: <Basket />,
         },
+        // {
+        //   path: "/under-construction",
+        //   element: <UnderConstructionPage />,
+        // }
       ],
     },
   ];

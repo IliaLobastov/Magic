@@ -12,8 +12,6 @@ export default function NavBar({ handleLogout }) {
   const user = useStore((state) => state.user);
   const userStatus = user && user.status;
 
-  
- 
   console.log(user);
   return (
     <Navbar className="custom-navbar" expand="lg">
@@ -29,21 +27,28 @@ export default function NavBar({ handleLogout }) {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <NavLink to="/" className="nav-link" style={{ color: "#ff6347" }}>
+            {/* <NavLink to="/" className="nav-link" style={{ color: "#ff6347" }}>
               MainPage
-            </NavLink>
-            <Nav.Link href="#features" style={{ color: "#ff6347" }}>
+            </NavLink> */}
+            {/* <Nav.Link href="#features" style={{ color: "#ff6347" }}>
               ///
             </Nav.Link>
             <Nav.Link href="#pricing" style={{ color: "#ff6347" }}>
               ///
-            </Nav.Link>
+            </Nav.Link> */}
             <NavLink
               to="/basket"
               className="nav-link"
               style={{ color: "#ff6347" }}
             >
-              Корзина
+              🗑️
+            </NavLink>
+            <NavLink
+              to="/under-construction"
+              className="nav-link"
+              style={{ color: "#ff6347" }}
+            >
+              Search
             </NavLink>
           </Nav>
           <Nav>

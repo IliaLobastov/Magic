@@ -2,6 +2,9 @@ import React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
+
+// ---------------ЭТО МОДАЛКА ЧТОБЫ ДОБАВЛЯТЬ КАРТОЧКИ------
+
 export default function CardForm({ cardSubmitHandler }) {
   return (
     <Form onSubmit={cardSubmitHandler}>
